@@ -25,6 +25,4 @@
 @property (nonatomic) NSInteger maxCacheItem;
 /// 时移域名，默认为playtimeshift.live.myqcloud.com
 @property NSString *playShiftDomain;
-/// log打印
-@property BOOL enableLog;
 @end

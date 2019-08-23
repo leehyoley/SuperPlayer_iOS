@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, PanDirection){
 
 typedef NS_ENUM(NSInteger, ButtonAction) {
     ActionNone,
-    ActionRetry,
+    ActionReplay,
     ActionSwitch,
     ActionIgnore,
     ActionContinueReplay,
@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, ButtonAction) {
 
 
 @interface SuperPlayerView () <UIGestureRecognizerDelegate,UIAlertViewDelegate,
-TXVodPlayListener, TXLivePlayListener, SuperPlayerControlViewDelegate, TXLiveBaseDelegate, AVAssetResourceLoaderDelegate>
+TXVodPlayListener, TXLivePlayListener, SuperPlayerControlViewDelegate>
 
 
 /** 用来保存快进的总时长 */
@@ -77,6 +77,8 @@ TXVodPlayListener, TXLivePlayListener, SuperPlayerControlViewDelegate, TXLiveBas
 // add for txvodplayer
 @property BOOL  isLoaded;
 
+@property NSURLSessionDataTask *getInfoHttpTask;
+
 @property (nonatomic) BOOL  isShiftPlayback;
 
 @property CGFloat maxLiveProgressTime;    // 直播最大进度/总时间
@@ -91,6 +93,12 @@ TXVodPlayListener, TXLivePlayListener, SuperPlayerControlViewDelegate, TXLiveBas
 /** 腾讯直播播放器 */
 @property (nonatomic, strong) TXLivePlayer               *livePlayer;
 
+@property (strong) TXImageSprite *imageSprite;
+
+@property NSArray *keyFrameDescList;
+
+@property CGFloat infoDuration;
+
 @property NSDate *reportTime;
 
 @property NetWatcher *netWatcher;
@@ -100,17 +108,5 @@ TXVodPlayListener, TXLivePlayListener, SuperPlayerControlViewDelegate, TXLiveBas
 @end
 
 
-// ---------------------------------------------------------------
-
-@class AdaptiveStream;
-
-@interface SuperPlayerModel()
-
-@property (nonatomic, strong) NSString *drmType;
-@property NSMutableArray<AdaptiveStream *> *streams;
-
-- (BOOL)canSetDrmType:(NSString *)drmType;
-
-@end
 
 #endif /* SuperPlayerView_Private_h */

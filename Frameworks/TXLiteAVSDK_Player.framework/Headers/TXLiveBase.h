@@ -40,14 +40,14 @@ typedef NS_ENUM(NSInteger, TX_Enum_Type_LogLevel) {
 + (instancetype) sharedInstance;
 
 /**  设置log输出级别
- *  @param level 参见 LOGLEVEL
+ *  @prarm level 参见 LOGLEVEL
  *
  */
 + (void) setLogLevel:(TX_Enum_Type_LogLevel)level;
 
 /**
  * 启用或禁用控制台日志打印
- * @param enabled 指定是否启用
+ * @param enabled指定是否启用
  */
 + (void) setConsoleEnabled:(BOOL)enabled;
 

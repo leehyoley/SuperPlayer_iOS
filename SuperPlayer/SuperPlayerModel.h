@@ -1,32 +1,32 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-
-@class SuperPlayerView;
-
-extern NSNotificationName kSuperPlayerModelReady;
-extern NSNotificationName kSuperPlayerModelFail;
-
 /** 多码率地址 */
 @interface SuperPlayerUrl : NSObject
 @property NSString *title;
 @property NSString *url;
 @end
 
-
-typedef enum : NSUInteger {
-    FileIdV2 = 0,
-    FileIdV3 = 1,
-} FileIdVer;
-
-extern NSString *const kDrmType_FairPlay;
-extern NSString *const kDrmType_SimpleAES;
+@interface SuperPlayerModel : NSObject
 
 /**
- * fileid播放
- * fileid相关字段请参考[云点播-数据结构](https://cloud.tencent.com/document/product/266/31773)
+ * 播放器Model可选填videoURL或appid+fileid
+ * 如果填videoURL，且是flv格式，那么播放器默认它是直播流
  */
-@interface SuperPlayerVideoId : NSObject
+
+/** 视频URL */
+@property (nonatomic,strong) NSString *videoURL;
+
+/**
+ 视频标题
+ */
+@property (nonatomic,strong) NSString *videoTitle;
+
+/**
+ * 多码率视频URL
+ */
+@property (nonatomic, strong) NSArray<SuperPlayerUrl *> *multiVideoURLs;
+
 /**
  * appId
  */
@@ -56,106 +56,15 @@ extern NSString *const kDrmType_SimpleAES;
  * (使用fileid播放时填写)
  */
 @property NSString *sign;
-
 /**
- * 模板ID (V3)
- */
-@property NSString *playDefinition;
-
-/**
- * 播放器 ID，可选。默认使用文件绑定的播放器 ID 或默认播放器 ID
- */
-@property NSString *playerId;
-
-/// 允许不同 IP 的播放次数，仅当开启防盗链且需要开启试看时填写
-@property int rlimit;
-
-/**
- * 请求后台的interface版本
- * 普通转码 FileIdV2 （默认）
- * DRM视频 FileIdV3
- */
-@property FileIdVer version;
-
-@end
-
-/////////////////////////////////////////////////////////////
-//
-//  播放前创建SuperPlayerModel对象
-//
-//  必填参数：
-//  case 播放腾讯云的fileid
-//      videoId
-//  case 播放普通url
-//      videoUrl
-//  case 播放多清晰度
-//      multiVideoURLs
-//      playingDefinition
-//
-/////////////////////////////////////////////////////////////
-
-
-@interface SuperPlayerModel : NSObject
-
-
-// ------------------------------------------------------------------
-// URL 播放方式
-// ------------------------------------------------------------------
-
-/** 视频URL */
-@property (nonatomic, strong) NSString *videoURL;
-
-// ------------------------------------------------------------------
-// FileId 播放方式
-// ------------------------------------------------------------------
-
-/**
- * 腾讯云存储对象
- */
-@property SuperPlayerVideoId *videoId;
-
-/**
- * FairPlay 凭证数据
- */
-@property NSData *certificate;
-
-/**
- * 加密视频的token
- * 播放加密视频需要设置此值
- */
-@property (nonatomic, strong) NSString *token;
-
-// ------------------------------------------------------------------
-// 多码率播放方法
-// ------------------------------------------------------------------
-
-/**
- * 多码率视频URL
- */
-@property (nonatomic, strong) NSArray<SuperPlayerUrl *> *multiVideoURLs;
-
-/**
- * 正在播放的清晰度
+ *
  */
 @property (nonatomic) NSString *playingDefinition;
 
-
-
-
-/**
- * 正在播放的清晰度URL
- */
 @property (readonly) NSString *playingDefinitionUrl;
-/**
- * 正在播放的清晰度索引
- */
+
 @property (readonly) NSInteger playingDefinitionIndex;
-/**
- * 清晰度列表
- */
+
 @property (readonly) NSArray *playDefinitions;
 
-
-
-- (void)requestPlayInfo:(SuperPlayerView *)playerView;
 @end

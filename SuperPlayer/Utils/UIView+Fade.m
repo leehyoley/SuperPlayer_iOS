@@ -27,10 +27,10 @@
 - (UIView *)fadeShow
 {
     [self cancelFadeOut];
-    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+    [UIView animateWithDuration:0.0 delay:UIViewAnimationOptionCurveEaseIn options:0 animations:^{
         self.hidden = NO;
     } completion:^(BOOL finished) {
-
+        
     }];
     return self;
 }
@@ -40,7 +40,7 @@
     int seeds = [self.fadeSeeds intValue];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (seeds == [self.fadeSeeds intValue]) {
-            [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            [UIView animateWithDuration:0.0 delay:UIViewAnimationOptionCurveEaseOut options:0 animations:^{
                 self.hidden = YES;
             } completion:^(BOOL finished) {
                 

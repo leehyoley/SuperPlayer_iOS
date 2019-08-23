@@ -31,6 +31,9 @@
 @property (nonatomic, strong) UIImageView             *bottomImageView;
 /** topView */
 @property (nonatomic, strong) UIImageView             *topImageView;
+
+/**观众人数label */
+@property (nonatomic, strong) UILabel                 *viewerCountLabel;
 /** 弹幕按钮 */
 @property (nonatomic, strong) UIButton                *danmakuBtn;
 /// 是否禁用弹幕
@@ -70,6 +73,27 @@
 
 /** 重播按钮 */
 @property (nonatomic, strong) UIButton       *repeatBtn;
+
+/** 收藏按钮 */
+@property (nonatomic, strong) UIButton       *collectBtn;
+
+/** 关注按钮 */
+@property (nonatomic, strong) UIButton       *followBtn;
+
+/** 分享按钮 */
+@property (nonatomic, strong) UIButton       *shareBtn;
+
+/** 横屏分享视图 */
+@property (nonatomic, strong) UIView         *verticalShareView;
+@property (nonatomic, strong) UIView         *leftLineView;
+@property (nonatomic, strong) UIView         *rightLineView;
+@property (nonatomic, strong) UILabel        *shareLabel;
+@property (nonatomic, strong) UIButton       *QQBtn;
+@property (nonatomic, strong) UIButton       *weichatBtn;
+@property (nonatomic, strong) UIButton       *weichatMomentBtn;
+@property (nonatomic, strong) UILabel        *QQLabel;
+@property (nonatomic, strong) UILabel        *weichatLabel;
+@property (nonatomic, strong) UILabel        *weichatMomentLabel;
 
 /** 是否全屏播放 */
 @property (nonatomic, assign,getter=isFullScreen)BOOL fullScreen;

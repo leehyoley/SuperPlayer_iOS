@@ -2,6 +2,7 @@
 #import "SuperPlayer.h"
 #import "SuperPlayerModel.h"
 #import "SuperPlayerViewConfig.h"
+#import "SPDefaultControlView.h"
 
 @class SuperPlayerControlView;
 @class SuperPlayerView;
@@ -50,7 +51,7 @@ typedef NS_ENUM(NSInteger, SuperPlayerState) {
 /** 是否是直播流 */
 @property (readonly) BOOL isLive;
 /// 超级播放器控制层
-@property (nonatomic) SuperPlayerControlView *controlView;
+@property (nonatomic) SPDefaultControlView *controlView;
 /// 是否允许竖屏手势
 @property (nonatomic) BOOL disableGesture;
 /// 是否在手势中
@@ -77,16 +78,6 @@ typedef NS_ENUM(NSInteger, SuperPlayerState) {
 @property (readonly) SuperPlayerModel       *playerModel;
 /// 播放器配置
 @property SuperPlayerViewConfig *playerConfig;
-/// 循环播放
-@property (nonatomic) BOOL loop;
-/**
- * 视频雪碧图
- */
-@property TXImageSprite *imageSprite;
-/**
- * 打点信息
- */
-@property NSArray *keyFrameDescList;
 /**
  * 播放model
  */
@@ -107,12 +98,5 @@ typedef NS_ENUM(NSInteger, SuperPlayerState) {
  * @warn isLoaded == NO 时暂停无效
  */
 - (void)pause;
-
-/**
- *  从xx秒开始播放视频跳转
- *
- *  @param dragedSeconds 视频跳转的秒数
- */
-- (void)seekToTime:(NSInteger)dragedSeconds;
 
 @end

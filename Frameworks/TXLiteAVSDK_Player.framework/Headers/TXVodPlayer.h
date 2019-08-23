@@ -14,7 +14,6 @@
 #import "TXVideoCustomProcessDelegate.h"
 #import "TXBitrateItem.h"
 #import "TXPlayerAuthParams.h"
-#import <AVFoundation/AVFoundation.h>
 
 /// 点播播放器
 @interface TXVodPlayer : NSObject
@@ -49,8 +48,7 @@
 @property BOOL isAutoPlay;
 
 /**
- * DRM的token
- * 此token需要从业务Server获取，腾讯云的FairPlay和SimpleAES加密的视频需要设置token才能播放
+ * 加密HLS的token。设置此值后，播放器自动在URL中的文件名之前增加voddrm.token.<Token>
  */
 @property (nonatomic, strong) NSString *token;
 
@@ -74,7 +72,7 @@
 /**
  * startPlay 启动从指定URL播放
  *
- * @param url 完整的URL(如果播放的是本地视频文件，这里传本地视频文件的完整路径)
+ * @prarm url 完整的URL(如果播放的是本地视频文件，这里传本地视频文件的完整路径)
  * @return 0 = OK
  */
 - (int)startPlay:(NSString *)url;
@@ -175,7 +173,7 @@
 /**
  * 当播放地址为master playlist，返回支持的码率（清晰度）
  *
- * @warning 在收到EVT_VIDEO_PLAY_BEGIN事件后才能正确返回结果
+ * @warning 在收到PLAY_EVT_PLAY_BEGIN事件后才能正确返回结果
  * @return 无多码率返回空数组
  */
 - (NSArray<TXBitrateItem *> *)supportedBitrates;
